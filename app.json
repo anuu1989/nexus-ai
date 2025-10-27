@@ -1,0 +1,19 @@
+{
+  "name": "Groq Chatbot",
+  "description": "A chatbot with image analysis powered by Groq",
+  "repository": "https://github.com/your-username/groq-chatbot",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["python", "flask", "groq", "chatbot", "ai", "vision"],
+  "env": {
+    "GROQ_API_KEY": {
+      "description": "Your Groq API key from console.groq.com",
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
