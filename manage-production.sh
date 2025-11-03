@@ -40,6 +40,7 @@ show_menu() {
 start_simple() {
     print_info "Starting NexusAI in simple production mode..."
     if [ -f "./run-prod-simple.sh" ]; then
+        chmod +x ./run-prod-simple.sh
         ./run-prod-simple.sh
     else
         print_error "run-prod-simple.sh not found!"
@@ -49,6 +50,7 @@ start_simple() {
 start_full() {
     print_info "Starting NexusAI with full production setup..."
     if [ -f "./run-production.sh" ]; then
+        chmod +x ./run-production.sh
         ./run-production.sh
     else
         print_error "run-production.sh not found!"
@@ -68,28 +70,30 @@ start_docker() {
 stop_production() {
     print_info "Stopping NexusAI production..."
     if [ -f "./stop-production.sh" ]; then
+        chmod +x ./stop-production.sh
         ./stop-production.sh
     else
         print_warning "stop-production.sh not found, trying manual stop..."
-        pkill -f "gunicorn.*wsgi:app"
-        docker-compose -f docker-compose.prod.yml down 2>/dev/null
+        pkill -f "gunicorn.*app:app"
+        docker-compose -f docker-compose.yml down 2>/dev/null
         print_status "Manual stop completed"
     fi
 }
 
 check_status() {
     if [ -f "./status-production.sh" ]; then
+        chmod +x ./status-production.sh
         ./status-production.sh
     else
         print_info "Quick status check..."
-        if pgrep -f "gunicorn.*wsgi:app" > /dev/null; then
+        if pgrep -f "gunicorn.*app:app" > /dev/null; then
             print_status "Gunicorn processes running"
         else
             print_info "No Gunicorn processes found"
         fi
         
-        if curl -f -s http://localhost:5000/ > /dev/null 2>&1; then
-            print_status "Application responding on http://localhost:5000/"
+        if curl -f -s http://localhost:5002/ > /dev/null 2>&1; then
+            print_status "Application responding on http://localhost:5002/"
         else
             print_error "Application not responding"
         fi

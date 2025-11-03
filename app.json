@@ -1,13 +1,29 @@
 {
-  "name": "Groq Chatbot",
-  "description": "A chatbot with image analysis powered by Groq",
-  "repository": "https://github.com/your-username/groq-chatbot",
-  "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": ["python", "flask", "groq", "chatbot", "ai", "vision"],
+  "name": "NexusAI - Enterprise AI Platform",
+  "description": "Production-ready AI platform with multi-provider support, RAG, LoRA fine-tuning, and enterprise security",
+  "repository": "https://github.com/anuu1989/nexus-ai",
+  "logo": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>",
+  "keywords": ["python", "flask", "ai", "rag", "lora", "groq", "openai", "anthropic", "enterprise", "chatbot", "ml"],
   "env": {
     "GROQ_API_KEY": {
-      "description": "Your Groq API key from console.groq.com",
+      "description": "Your Groq API key from console.groq.com (required)",
       "required": true
+    },
+    "OPENAI_API_KEY": {
+      "description": "Your OpenAI API key from platform.openai.com (optional)",
+      "required": false
+    },
+    "ANTHROPIC_API_KEY": {
+      "description": "Your Anthropic API key from console.anthropic.com (optional)",
+      "required": false
+    },
+    "SECRET_KEY": {
+      "description": "Flask secret key for session security",
+      "generator": "secret"
+    },
+    "FLASK_ENV": {
+      "description": "Flask environment",
+      "value": "production"
     }
   },
   "formation": {
@@ -15,5 +31,10 @@
       "quantity": 1,
       "size": "basic"
     }
-  }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
 }

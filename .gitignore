@@ -134,3 +134,28 @@ instance/
 uploads/
 user_data/
 sessions/
+
+# NexusAI Specific
+backend/data/uploads/
+backend/data/backups/
+backend/data/rag_data/
+backend/data/lora_data/
+backend/data/models_cache/
+nexusai.db
+test_nexusai.db
+
+# Multiple Virtual Environments
+venv-*/
+*-venv/
+
+# Production Files
+*.pid
+gunicorn.conf.py
+
+# Docker
+.dockerignore
+
+# Monitoring and Logs
+prometheus_data/
+grafana_data/
+monitoring/data/
